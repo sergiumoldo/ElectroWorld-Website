@@ -1,0 +1,107 @@
+﻿@model Pipelights.Database.Models.TestimonialDto
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    .rating {
+        display: inline-block;
+        position: relative;
+        height: 50px;
+        line-height: 50px;
+        font-size: 50px;
+    }
+
+        .rating label {
+            position: relative;
+            display: block;
+            float: left;
+            height: 100%;
+            cursor: pointer;
+        }
+
+            .rating label input {
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+            }
+
+            .rating label .icon {
+                color: grey;
+            }
+
+        .rating:not(:hover) label input:checked ~ .icon,
+        .rating:hover label:hover input ~ .icon {
+            color: #FF9529;
+        }
+
+        .rating label input:focus:not(:checked) ~ .icon:last-child {
+            color: #000;
+            text-shadow: 0 0 5px #FF9529;
+        }
+</style>
+
+<br />
+<br />
+<div class="container-xxl">
+    <h4>Lasa o recenzie</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Insert" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Nume</label>
+                    <input asp-for="Name" class="form-control" required />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label">Recenzie</label>
+                    <textarea asp-for="Description" class="form-control" required></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <h6>Rating:</h6>
+                    <div class="rating">
+                        <div>
+                            <label>
+                                <input type="radio" name="Stars" value="1" />
+                                <span class="icon">★</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="Stars" value="2" />
+                                <span class="icon">★</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="Stars" value="3" />
+                                <span class="icon">★</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="Stars" value="4" />
+                                <span class="icon">★</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="Stars" value="5" />
+                                <span class="icon">★</span>
+                            </label>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Stars" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Salveaza recenzia" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <br />
+    <div>
+        <a href="~/Home/Index">Inapoi</a>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Pipelights.Website.BusinessService.Models.ProductDetailsDto>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    .product-item {
+        box-sizing: border-box;
+        text-align: center;
+        margin-bottom: 20px;
+        width: calc(33.33% - 20px); /* 3 items in a row on big screens, with margin */
+        margin-right: 20px;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .product-item img {
+        width: 100%;
+    }
+
+    .product-item h3,
+    .product-item p {
+        margin: 0;
+        font-size: 12px;
+    }
+
+    @@media (max-width: 991px) {
+        /* Medium screens */
+        .product-item {
+            width: calc(50% - 20px); /* 2 items in a row on medium screens, with margin */
+        }
+
+        .product-item:nth-child(even) {
+            margin-right: 0; /* Remove margin for even items to align with the edge */
+        }
+    }
+
+    @@media (max-width: 767px) {
+        /* Small screens */
+        .product-item {
+            width: 100%; /* 1 item per row on small screens */
+            margin-right: 0; /* Remove margin for small screens */
+        }
+
+    }
+</style>
+
+<div class="container-xxl"style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+    @foreach (var lampEntity in Model)
+    {
+        <div class="product-item text-center border border-5 border-light">
+            <div class="service-item service-item1">
+                <div class="overflow-hidden overflow-hidden1">
+                    <img src="@lampEntity.MainImage" alt="">
+                </div>
+                <div class="mt-2">
+                    <h4 class="mb-3">@lampEntity.Name</h4>
+                   @* <p>@Html.Raw(lampEntity.Description.Length > 200 ? lampEntity.Description.Substring(0, 200) : lampEntity.Description)</p>*@
+                    <br>
+                    @*<a class="fw-medium m-3" style="cursor:pointer" href="~/Products/DetailsForService?Id =@lampEntity.Id">Vezi mai mult<i class="fa fa-arrow-right ms-2"></i></a>*@
+                </div>
+            </div>
+        </div>
+    }
+</div>

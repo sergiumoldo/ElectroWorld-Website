@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Pipelights.Database.Models.TestimonialEntity>
+
+@{
+    ViewData["Title"] = "TestimonialDashboard";
+}
+
+<br />
+<br />
+<h1>TestimonialDashboard</h1>
+
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsInactive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stars)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsInactive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stars)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Sterge", "DeleteTestimonial", new {  id=item.id})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<br />
+<br />
+<p>
+    <a href="~/Admin/Dashboard">Inapoi</a>
+</p>

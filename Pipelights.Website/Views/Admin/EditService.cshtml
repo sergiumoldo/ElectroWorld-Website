@@ -1,0 +1,176 @@
+﻿@using Pipelights.Database.Models
+@model Pipelights.Website.BusinessService.Models.ProductDetailsDto
+
+@{
+    if (Model == null)
+    {
+        ViewData["Title"] = "Adauga";
+    }
+    else
+    {
+        ViewData["Title"] = "Edit";
+    }
+
+    var categories = (List<CategoryEntity>)ViewBag.Categories;
+
+}
+
+<style>
+    footer {
+        display: none;
+    }
+</style>
+<br />
+<br />
+<br />
+<div class="container">
+    @*<h4>@Model.Name</h4>*@
+</div>
+
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group" style="display: none;">
+                    <label asp-for="Id" class="control-label"></label>
+                    <input asp-for="Id" class="form-control" />
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label">Descriere</label>
+                    <textarea name="Description" id="Description" class="form-control">
+                        @Model?.Description
+                    </textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TechnicalData" class="control-label">Date Tehnice</label>
+                    <textarea name="TechnicalData" id="TechnicalData" class="form-control">
+                        @Model?.TechnicalData
+                    </textarea>
+                    <span asp-validation-for="TechnicalData" class="text-danger"></span>
+                </div>
+               @* <div class="form-group">
+                    <label asp-for="Price" class="control-label">Pret</label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PriceReduced" class="control-label">Pret cu reducere</label>
+                    <input asp-for="PriceReduced" class="form-control" />
+                    <span asp-validation-for="PriceReduced" class="text-danger"></span>
+                </div>*@
+                <br />
+                <div class="form-group">
+                    <label asp-for="IsInactive" class="control-label">E Inactivat?</label>
+                    <input asp-for="IsInactive" class="form-check-input" />
+                    <span asp-validation-for="IsInactive" class="text-danger"></span>
+                </div>
+                <br />
+               @* <div class="form-group">
+                    <label asp-for="IsOnStock" class="control-label">Este in stoc ?</label>
+                    <input asp-for="IsOnStock" class="form-check-input" />
+                    <span asp-validation-for="IsOnStock" class="text-danger"></span>
+                </div>*@
+                <br />
+                <div class="form-group">
+                    <label asp-for="IsService" class="control-label">Este serviciu ?</label>
+                    <input asp-for="IsService" class="form-check-input" checked />
+                    <span asp-validation-for="IsService" class="text-danger"></span>
+                </div>
+                <br />
+               @* <div class="form-group">
+                    <label asp-for="Categories" class="control-label my-3">Alege categoriile din care face parte</label>
+                    <br />
+                    <div>
+                        @foreach (var category in categories)
+                        {
+                            <div>
+                                <input type="checkbox" name="CategoriesNew" value="@category.id"
+                                   @(Model != null && Model.CategoriesNew != null && Model.CategoriesNew.Contains(category.id) ? "checked" : "")>
+                                <label>@category.Name</label>
+                            </div>
+                        }
+                    </div>
+                    <br />
+                </div>*@
+                <br />
+                <h2>Imagini</h2>
+                <div style="display:flex; justify-content:flex-start; align-items:center">
+
+                    @if (Model != null && Model?.Resources != null)
+                    {
+                        @foreach (var image in Model.Resources)
+                        {
+                            <div style=" padding: 10px; ">
+                                @{
+                                    var url = image.Replace(" ", "%20");
+                                    // var url = "/lib/images/UploadedFiles/" + Model.ImageFolder + x;
+                                }
+                                <img src=@url style="max-width: 120px;">
+                                <span class="down-content">
+                                    <a href="~/Admin/RemovePhoto?url=@url&id=@Model.Id"><h5 style="color:red">Sterge @*"@image"*@</h5></a>
+                                </span>
+                            </div>
+                        }
+                    }
+                </div>
+                <br />
+                <br />
+                <div class="form-group">
+                    <input type="submit" value="Salveaza" class="btn btn-success" />
+                </div>
+                <br />
+                <br />
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            <h3>Adauga imagini si fisiere</h3>
+            <form method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="UploadImage">
+                <span>Alege imaginea:</span>
+                <input asp-for="Id" type="hidden" class="form-control" />
+                <input type="file" name="postedFiles" multiple />
+                <input class="btn btn-primary" type="submit" value="Incarca fiseierele" />
+                <br />
+                <span style="color:green">@Html.Raw(ViewBag.Message)</span>
+            </form>
+        </div>
+        <br />
+        <br />
+    </div>
+    <div>
+        <a asp-action="Dashboard">Am terminat, Du-ma inapoi!</a>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        <script src="https://cdn.tiny.cloud/1/xkg74bvbq9qybzl44aedwh27mnwildpssfuyxpr61xg1kxli/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+        <script>
+            tinymce.init({
+                selector: 'textarea#Description',
+                plugins: 'advlist autolink lists link image charmap preview anchor pagebreak',
+                toolbar_mode: 'floating',
+            });
+
+            tinymce.init({
+                selector: 'textarea#TechnicalData',
+                plugins: 'advlist autolink lists link image charmap preview anchor pagebreak',
+                toolbar_mode: 'floating',
+            });
+
+
+        </script>
+    }
+}

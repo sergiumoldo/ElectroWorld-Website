@@ -1,0 +1,142 @@
+﻿.pdp {
+    min-height: 580px;
+    max-height: 800px;
+}
+
+.pdp-left {
+    float: left;
+    margin-left:0px;
+}
+
+.pdp-right {
+    float: right;
+    background-color: #f6f6f6;
+    padding: 35px;
+}
+
+.btn-cart-main {
+    background: #212529;
+    border-color: #212529;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1rem;
+    height: 32px;
+    line-height: 32px;
+    padding: 0px 24px 5px 24px;
+    border-radius: 7px !important;
+    transition: .4s ease-in-out;
+    letter-spacing: 2px;
+}
+.btn-cart-main:hover {
+    background: #F0B250;
+    border-color: #F0B250;
+    opacity:1!important;
+}
+.btn-cart-main:focus, .btn:active {
+    background: #F0B250;
+    border-color: #F0B250;
+    
+}
+
+    .buy-return-link {
+        color: #212529;
+        font-size: .8rem;
+        text-transform: uppercase;
+        padding: 4px 16px 4px 40px;
+        display: inline-block;
+        -webkit-transition: .4s ease-in-out;
+        transition: .4s ease-in-out;
+        letter-spacing: 2px;
+        /*border: 1px solid #424347;*/
+        border-radius: 7px;
+        position: relative;
+        padding-left: 16px;
+    }
+
+.buy-return-link:hover {
+    
+    color: #212529;
+}
+
+.svg:hover {
+    color: #F0B250;
+}
+
+.title-primary {
+    color: #a0a1a3;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 400;
+}
+/*start PDP slideshow*/
+/* Position the image container (needed to position the left and right arrows) */
+.container {
+    position: relative;
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+    text-align:center!important;
+    
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+    cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    width: auto;
+    padding: 14px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0px;
+    border-radius: 3px 0 0 3px;
+}
+
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover,
+    .next:hover {
+        background-color: rgb(246 246 246);
+        opacity: 0.5;
+    }
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Six columns side by side */
+.column {
+    float: left;
+    width: 16.66%;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+    opacity: 0.6;
+}
+
+    .active,
+    .demo:hover {
+        opacity: 1;
+    }
+

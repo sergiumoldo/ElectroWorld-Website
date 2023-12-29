@@ -1,0 +1,288 @@
+﻿<style>
+    .hov {
+        background-color: #212529;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 1rem;
+        height: 32px;
+        line-height: 32px;
+        padding: 0px 24px 5px 24px;
+        border-radius: 7px !important;
+        transition: .4s ease-in-out;
+        letter-spacing: 2px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+        .hov:hover {
+            background-color: #F0B250;
+            color: black;
+            text-transform: uppercase;
+            font-size: 1rem;
+            height: 32px;
+            line-height: 32px;
+            padding: 0px 24px 5px 24px;
+            border-radius: 7px !important;
+            transition: .4s ease-in-out;
+            letter-spacing: 2px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+    .containerdreapta {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        height: 440px;
+    }
+
+    .icons {
+        color: #757575;
+        text-align: center;
+        cursor: pointer;
+    }
+
+        .icons:hover {
+            color: #F0B250;
+        }
+
+    .iconss {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #757575;
+        text-align: center;
+        cursor: pointer;
+        width: 120px;
+    }
+
+    .social {
+    }
+
+
+        .social:hover {
+            color: #F0B250;
+        }
+
+    .btn-cart-main {
+        background: #212529;
+        border-color: #212529;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 1rem;
+        height: 32px;
+        line-height: 32px;
+        padding: 0px 24px 5px 24px;
+        border-radius: 7px !important;
+        transition: .4s ease-in-out;
+        letter-spacing: 2px;
+    }
+
+        .btn-cart-main:hover {
+            background: #F0B250;
+            border-color: #F0B250;
+            opacity: 1 !important;
+        }
+
+        .btn-cart-main:focus, .btn:active {
+            background: #F0B250;
+            border-color: #F0B250;
+        }
+
+    .redlabel {
+        color: #e02b27;
+        font-size: 12px;
+        display: none;
+    }
+
+    .redlabelshow {
+        display: block;
+    }
+
+    .formfocus {
+    }
+
+        .formfocus:focus {
+            border: 1px solid #F0B250 !important;
+        }
+
+    .f {
+        border: 1px solid #d6d6d6;
+        background-color: white;
+        border-radius: 5px;
+    }
+
+    }</style>
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-5 mb-5">
+    <div class="container py-5">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Contact</h1>
+       
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Contact Start -->
+<div class="container-fluid bg-light overflow-hidden px-lg-0" style="margin: 6rem 0;">
+    <div class="container contact px-lg-0">
+        <div class="row g-0 mx-lg-0">
+            <div class="col-lg-6 contact-text py-5 wow fadeIn" data-wow-delay="0.5s">
+                <div class="p-lg-5 ps-lg-0">
+                    <div class="section-title text-start">
+                        <h1 class="display-5 mb-4">Contacteaza-ne</h1>
+                    </div>
+                    <p class="mb-4">Pentru a cere o oferta pentru unul dintre serviciile noastre completeaza formularul de mai jos, iar noi o sa te contactam in cel mai scurt timp.</p>
+                    <form id="contact" action="~/Home/SendMessage" method="post">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Numele tau">
+                                    <label style="margin-top:-20px" id="labelname" class="redlabel">Acest camp este obligatoriu</label>
+                                    <label for="name">Nume</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" name="email"  id="email" placeholder="Email">
+                                    <label style="margin-top:-20px" id="labelemail" class="redlabel">Acest camp este obligatoriu</label>
+                                    <label for="email">Email</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subiect">
+                                    <label style="margin-top:-20px" id="labelsubject" class="redlabel">Acest camp este obligatoriu</label>
+                                    <label for="subject">Subiect</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Lasa un mesaj aici" name="message" id="message" style="height: 100px"></textarea>
+                                    <label style="margin-top:-20px" id="labelmessage" class="redlabel">Acest camp este obligatoriu</label>
+                                    <label style="margin-top:-20px" id="labelmessage1" class="redlabel">Mesajul trebuie sa contina cel putin 30 de caractere</label>
+
+                                    <label for="message">Mesaj</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Cere oferta</button>
+                            </div>
+                            <h3>@ViewBag.EmailSent</h3>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6 pe-lg-0" style="min-height: 400px;">
+                <div class="position-relative h-100">
+                    <iframe class="position-absolute w-100 h-100" style="object-fit: cover;"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26276.061927706756!2d23.58447886018307!3d46.77121015719381!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4740a7933654513b%3A0xc07cc20e6f0c09bb!2sCluj-Napoca%2C%20Romania!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
+                            frameborder="0" allowfullscreen="" aria-hidden="false"
+                            tabindex="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+<script src="jquery-3.6.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="~/js"></script>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    function showModal() {
+        $('#exampleModalCenter').modal('show');
+    }
+</script>
+
+@if (ViewBag.ShowModalScript != null)
+{
+    <script>
+        @Html.Raw(ViewBag.ShowModalScript)
+    </script>
+}
+
+<script>
+
+         //form validation
+
+           const form = document.getElementById('contact');
+
+    const nume = document.getElementById('name');
+    const labelname = document.getElementById('labelname');
+
+    const email = document.getElementById('email');
+    const labelemail = document.getElementById('labelemail');
+
+    const subject = document.getElementById('subject');
+    const labelsubject = document.getElementById('labelsubject');
+
+    const message = document.getElementById('message');
+    const labelmessage = document.getElementById('labelmessage');
+    const labelmessage1 = document.getElementById('labelmessage1');
+
+
+    form.addEventListener('submit', (e) => {
+
+        if (!checkInputsContact()) {
+            e.preventDefault();
+        } else {
+
+        }
+    });
+
+    function checkInputsContact() {
+
+        if (nume.value === '') {
+            labelname.classList.add('redlabelshow');
+            return (false);
+        } else {
+            labelname.classList.remove('redlabelshow')
+
+        }
+
+        if (email.value === '') {
+            labelemail.classList.add('redlabelshow');
+            return (false);
+        } else {
+            labelemail.classList.remove('redlabelshow');
+
+        }
+
+        if (subject.value === '') {
+            labelsubject.classList.add('redlabelshow');
+            return (false);
+        } else {
+            labelsubject.classList.remove('redlabelshow');
+
+        }
+
+
+
+        if (message.value === '') {
+            labelmessage.classList.add('redlabelshow');
+            labelmessage1.classList.remove('redlabelshow');
+            return (false);
+        } else if (message.value.length < 30) {
+            labelmessage1.classList.add('redlabelshow');
+            labelmessage.classList.remove('redlabelshow');
+            return (false);
+        } else {
+            labelmessage.classList.remove('redlabelshow');
+            labelmessage1.classList.remove('redlabelshow');
+        }
+
+
+
+
+        return (true);
+
+    }
+
+
+
+</script>

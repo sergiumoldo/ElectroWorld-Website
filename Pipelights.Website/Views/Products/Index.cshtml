@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Pipelights.Website.BusinessService.Models.ProductDetailsDto>
+
+@{
+    ViewData["Title"] = "Corpuri de iluminat in stil industrial by SeRox";
+    var categories = ViewBag.Categories;
+}
+
+<br />
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Left side with filters -->
+            <div class="col-md-3">
+                <!-- Add your filter options here -->
+                <h5>Categorii</h5>
+                <!-- Use a select dropdown on small screens -->
+                <select id="categoryFilter" class="form-select d-md-none" aria-label="Default select example">
+                    @foreach (var cat in categories)
+                    {
+                        <option value="@cat.Name">@cat.Name</option>
+                    }
+                </select>
+                <!-- Use a list group on larger screens -->
+                <ul id="categoryFilterList" class="list-group d-none d-md-block">
+                    @foreach (var cat in categories)
+                    {
+                        <li class="list-group-item"><a href="~/Products/Filter?Id=@cat.Name">@cat.Name</a></li>
+                    }
+                </ul>
+
+            </div>
+
+            <!-- Right side with products -->
+            <div class="col-md-9">
+                <div class="row" id="productGrid">
+                    <!-- Render the products dynamically using Razor syntax -->
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-sm-6 col-md-6 col-lg-3 mb-4">
+                            <div class="service-item">
+                                <div class="overflow-hidden border border-5 border-light p-2 text-center">
+                                    <img class="img-fluid mb-3" src="@item.MainImage" alt="">
+                                    <h6 class="mb-1">@item.Name</h6>
+                                    <h5 class="mb-1">@item.Price RON</h5>
+                                    <a class="fw-medium btn btn-sm btn-primary" href="~/Products/Details?Id=@item.Id">Vezi produs</a>
+                                </div>
+                                <div class="border-top-0"></div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+

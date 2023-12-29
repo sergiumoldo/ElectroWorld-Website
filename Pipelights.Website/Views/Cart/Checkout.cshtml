@@ -1,0 +1,407 @@
+﻿<style>
+
+    .butoninapoi1 {
+        background-color: #F0B250;
+        border-color: #F0B250;
+        color: ##212529;
+        text-transform: uppercase;
+        font-size: 1rem;
+        height: 32px;
+        line-height: 32px;
+        padding: 0px 30px 14px 30px;
+        border-radius: 7px !important;
+        transition: .4s ease-in-out;
+        letter-spacing: 2px;
+    }
+
+        .butoninapoi1:hover {
+            background-color: #212529;
+            border-color: #212529;
+            color: white;
+        }
+
+    .redlabel {
+        color: #e02b27;
+        font-size: 12px;
+        display: none;
+    }
+
+    .redlabelshow {
+        display: block;
+    }
+
+    .formfocus {
+    }
+
+        .formfocus:focus {
+            border: 1px solid #F0B250 !important;
+        }
+
+</style>
+
+@model Pipelights.Website.Models.Cart
+
+@{
+    ViewData["Title"] = "Checkout";
+    var subtotal = 0;
+
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+            <br />
+            <h4 style="color:#212529">Detalii facturare</h4>
+            <br />
+            <form method="post" action="~/Cart/PlaceOrder" id="form">
+                <div class="form-group">
+                    <label for="name">Nume</label>
+                    <input type="text" style="border:1px solid #d6d6d6; background-color:white" class="formfocus form-control shadow-none " id="name" name="name" placeholder="">
+                    <label id="labelnume" class="redlabel">Acest camp este obligatoriu</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="surname">Prenume</label>
+                    <input type="text" style="border:1px solid #d6d6d6; background-color:white" class="formfocus form-control shadow-none " id="surname" name="surname" placeholder="">
+                    <label id="labelprenume" class="redlabel">Acest camp este obligatoriu</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email </label>
+                    <input type="email" style="border:1px solid #d6d6d6; background-color:white" class="formfocus form-control shadow-none " id="email" name="email" placeholder="">
+                    <label id="labelemail" class="redlabel">Acest camp este obligatoriu</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="telephone">Telefon </label>
+                    <input type="text" style="border:1px solid #d6d6d6; background-color:white" class="formfocus form-control shadow-none " id="telephone" name="telephone" placeholder="">
+                    <label id="labeltelefon" class="redlabel">Acest camp este obligatoriu</label>
+                    <label id="labeltelefonvalid" class="redlabel">Introdu un numar de telefon valid</label>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="judete">Judet</label>
+                    <select onchange="changeTransportPrice()" class="formfocus form-control shadow-none" style="display:block;border:1px solid #d6d6d6; background-color:white" name="judete" id="judete">
+                        <option value="0">Alege Judet</option>
+                        <option value="Alba">Alba</option>
+                        <option value="Arad">Arad</option>
+                        <option value="Arges">Arges</option>
+                        <option value="Bacau">Bacau</option>
+                        <option value="Bihor">Bihor</option>
+                        <option value="Bistrita Nasaud">Bistrita Nasaud</option>
+                        <option value="Botosani">Botosani</option>
+                        <option value="Brasov">Brasov</option>
+                        <option value="Braila">Braila</option>
+                        <option value="Bucuresti">Bucuresti</option>
+                        <option value="Buzau">Buzau</option>
+                        <option value="Caras Severin">Caras Severin</option>
+                        <option value="Calarasi">Calarasi</option>
+                        <option value="Cluj">Cluj</option>
+                        <option value="Constanta">Constanta</option>
+                        <option value="Covasna">Covasna</option>
+                        <option value="Dambovita">Dambovita</option>
+                        <option value="Dolj">Dolj</option>
+                        <option value="Galati">Galati</option>
+                        <option value="Giurgiu">Giurgiu</option>
+                        <option value="Gorj">Gorj</option>
+                        <option value="Harghita">Harghita</option>
+                        <option value="Hunedoara">Hunedoara</option>
+                        <option value="Ialomita">Ialomita</option>
+                        <option value="Iasi">Iasi</option>
+                        <option value="Ilfov">Ilfov</option>
+                        <option value="Maramures">Maramures</option>
+                        <option value="Mehedinti">Mehedinti</option>
+                        <option value="Mures">Mures</option>
+                        <option value="Neamt">Neamt</option>
+                        <option value="Olt">Olt</option>
+                        <option value="Prahova">Prahova</option>
+                        <option value="Satu Mare">Satu Mare</option>
+                        <option value="Salaj">Salaj</option>
+                        <option value="Sibiu">Sibiu</option>
+                        <option value="Suceava">Suceava</option>
+                        <option value="Teleorman">Teleorman</option>
+                        <option value="Timis">Timis</option>
+                        <option value="Tulcea">Tulcea</option>
+                        <option value="Vaslui">Vaslui</option>
+                        <option value="Valcea">Valcea</option>
+                        <option value="Vrancea">Vrancea</option>
+                    </select>
+                    <label id="labeljudete" class="redlabel">Acest camp este obligatoriu</label>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="localitate">Localitate</label>
+                    <input type="text" style="border:1px solid #d6d6d6; background-color:white" class="formfocus form-control shadow-none " id="localitate" name="localitate" placeholder="">
+                    <label id="labellocalitate" class="redlabel">Acest camp este obligatoriu</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Adresa</label>
+                    <input type="text" style="border:1px solid #d6d6d6; background-color:white" class="formfocus form-control shadow-none  " id="address" name="address" placeholder="">
+                    <label id="labeladresa" class="redlabel">Acest camp este obligatoriu</label>
+                </div>
+                <br />
+
+                <h4 style="color:#212529">Sumar comanda</h4>
+                <br />
+                <div>
+                    @if(Model?.ProductsForCart != null)
+                    @foreach (var product in Model.ProductsForCart)
+                    {
+
+                        <div>
+                            <img style="height: 140px" src="@product.ProductDetails.MainImage" />
+                        </div>
+
+                        <div>
+                            <p style="color:#212529">Lampa @product.ProductDetails.Name</p>
+                            <p style="color:#212529">@product.Quantity BUC</p>
+                            @{
+                                var price = 0;
+                            }
+
+                            @if (!string.IsNullOrEmpty(product.ProductDetails.PriceReduced))
+                            {
+                                <p>@product.ProductDetails.PriceReduced</p>
+                                int.TryParse(product.ProductDetails.PriceReduced, out price);
+                            }
+                            else
+                            {
+                                <p>@product.ProductDetails.Price RON BUC</p>
+                                int.TryParse(product.ProductDetails.Price, out price);
+                            }
+
+                            @{
+
+                                subtotal = subtotal + product.Quantity * price;
+                            }
+
+
+                        </div>
+                    }
+                    <br />
+                    <div>
+
+                        <div style="display:none" id="subTotalPrice">@subtotal</div>
+                        <h5 style="color:#a0a1a3">Subtotal: @subtotal RON</h5>
+                    </div>
+
+                    <div>
+                        <h6 style="color:#a0a1a3">Transport:  <span id="transportPrice">0</span> RON</h6>
+                    </div>
+
+                    <br />
+
+                    <div class="form-group " style="font-size: 14px;
+                                                        width: 100%;
+                                                        display: flex;
+                                                        justify-content: flex-start;
+                                                        align-items: center;
+                                                    ">
+                        <input id="vouckerInput" type="text" name="VoucherString" style="width:35%; margin-right:10px;border:1px solid #d6d6d6; background-color:white" class="formfocus form-control shadow-none  " id="address" name="address" placeholder="Voucher">
+                        <button type="button" id="aplyVoucherBtn" class="btn btn-primary shadow-none btn-cart-main">
+                            Aplica
+                        </button>
+                    </div>
+                    <br />
+
+                    <div style="font-size:20px; font-weight: bold;color:#212529">
+                        <span>TOTAL: </span><span id="totalPrice"> @subtotal </span><span> RON</span>
+                    </div>
+                </div>
+                <br />
+
+                @*#region Payment*@
+                <div>
+                    <h3>Detalii Plata</h3>
+                    <div class="form-check">
+                        <input required class="form-check-input" type="radio" name="payment" id="ramburs" value="Plata prin Ramburs" checked>
+                        <label class="form-check-label" for="ramburs">
+                            Plata la livrare
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="payment" id="bankTransfer" value="Transfer Bancar">
+                        <label class="form-check-label" for="bankTransfer">
+                            Plata prin transfer Bancar
+                        </label>
+                    </div>
+
+                    <div class="form-check disabled">
+                        <input class="form-check-input" type="radio" name="payment" id="onlineWithCard" value="Online cu Card Bancar" disabled>
+                        <label class="form-check-label" for="onlineWithCard">
+                            Online cu Card Bancar (indisponibil momentan)
+                        </label>
+                    </div>
+                </div>
+                <br />
+                @*endregion payment*@
+                <button type="submit" class="btn btn-secondary shadow-none btn-cart-main">
+                    Plaseaza comanda
+                </button>
+            </form>
+            <br />
+        </div>
+
+    </div>
+</div>
+
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+<script>
+
+    $("#aplyVoucherBtn").click(function (event) {
+        //event.preventDefault(); // Prevent the default form submission
+
+        var model = {
+            VoucherString: $("#vouckerInput").val(),
+            Price: parseFloat($("#subTotalPrice").html())
+        };
+
+        $.ajax({
+            url: '@Url.Action("PriceWithDiscount", "Cart")',
+            type: "POST",
+            data: JSON.stringify(model),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                if (data != model.Price) {
+                    console.log("discount!");
+                }
+                    $("#totalPrice").html(data);
+
+                }
+
+    });
+
+            });
+
+
+
+    function changeTransportPrice() {
+        var judetSelectat = document.getElementById("judete").value;
+        if (judetSelectat == "Cluj" || judetSelectat == "Salaj") {
+            document.getElementById("transportPrice").innerHTML = 0;
+            document.getElementById("totalPrice").innerHTML = parseInt(document.getElementById("subTotalPrice").innerHTML);
+        } else {
+            document.getElementById("transportPrice").innerHTML = 30;
+            document.getElementById("totalPrice").innerHTML = parseInt(document.getElementById("subTotalPrice").innerHTML) + 30;
+        }
+    }
+
+    const navItemsCartK = document.getElementsByClassName('nav-item');
+    const cartUnderlinedK = document.getElementById('cart');
+
+    for (var i = 0; i < navItemsCartK.length; i++) {
+        navItemsCartK[i].classList.remove('active');
+        cartUnderlinedK.classList.add('active');
+    }
+
+   
+   
+
+
+</script>
+<script>
+    $(document).ready(function () {
+        const form = $('#form');
+
+        const nume = $('#name');
+        const labelnume = $('#labelnume');
+
+        const prenume = $('#surname');
+        const labelprenume = $('#labelprenume');
+
+        const email = $('#email');
+        const labelemail = $('#labelemail');
+
+        const telefon = $('#telephone');
+        const labeltelefon = $('#labeltelefon');
+        const labeltelefonvalid = $('#labeltelefonvalid');
+
+        const localitate = $('#localitate');
+        const labellocalitate = $('#labellocalitate');
+
+        const adresa = $('#address');
+        const labeladresa = $('#labeladresa');
+
+        const judete = $('#judete');
+        const labeljudete = $('#labeljudete');
+
+        form.submit(function (e) {
+            if (!checkInputsCheckout()) {
+                e.preventDefault();
+            }
+        });
+
+        function checkInputsCheckout() {
+            if (nume.val() === '') {
+                labelnume.addClass('redlabelshow');
+                return false;
+            } else {
+                labelnume.removeClass('redlabelshow');
+            }
+
+            if (prenume.val() === '') {
+                labelprenume.addClass('redlabelshow');
+                return false;
+            } else {
+                labelprenume.removeClass('redlabelshow');
+            }
+
+            if (email.val() === '') {
+                labelemail.addClass('redlabelshow');
+                return false;
+            } else {
+                labelemail.removeClass('redlabelshow');
+            }
+
+            if (telefon.val() === '') {
+                labeltelefon.addClass('redlabelshow');
+                return false;
+            } else if (telefon.val().length < 10) {
+                labeltelefon.removeClass('redlabelshow');
+                labeltelefonvalid.addClass('redlabelshow');
+                return false;
+            } else {
+                labeltelefon.removeClass('redlabelshow');
+                labeltelefonvalid.removeClass('redlabelshow');
+            }
+
+            if (judete.val() === '0') {
+                labeljudete.addClass('redlabelshow');
+                return false;
+            } else {
+                labeljudete.removeClass('redlabelshow');
+            }
+
+            if (localitate.val() === '') {
+                labellocalitate.addClass('redlabelshow');
+                return false;
+            } else {
+                labellocalitate.removeClass('redlabelshow');
+            }
+
+            if (adresa.val() === '') {
+                labeladresa.addClass('redlabelshow');
+                return false;
+            } else {
+                labeladresa.removeClass('redlabelshow');
+            }
+
+            return true;
+        }
+    });
+</script>
