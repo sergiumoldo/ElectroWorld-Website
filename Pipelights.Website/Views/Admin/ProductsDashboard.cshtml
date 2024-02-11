@@ -58,7 +58,14 @@
                         <img width="250px" src="@item.MainImage">
                         <div class="down-content">
                             <a href="#"><h4>@item.Name</h4></a>
-                          <p>Descriere: @((item.Description.Length > 150) ? item.Description.Substring(0, 150) + "..." : item.Description)</p>
+                            @if(item.Description == null)
+                            {
+                                <p>Acest produs nu are descriere</p>
+                            }
+                            else
+                            {
+                                <p>Descriere: @((item.Description.Length > 150) ? item.Description.Substring(0, 150) + "..." : item.Description)</p>
+                            }
                             <p> Pret: @item.Price</p>
                             <p>Pret redus: @item.PriceReduced</p>
                             @if (item.IsInactive)

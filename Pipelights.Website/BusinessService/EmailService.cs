@@ -23,8 +23,8 @@ namespace Pipelights.Website.BusinessService
         {
             try
             {
-                var fromAddress = new MailAddress("adrian12nagy@gmail.com", "Pipelights Website");
-                var toAddress = new MailAddress(toEmail, "Pipelights by Serox");
+                var fromAddress = new MailAddress("adrian12nagy@gmail.com", "Electroworld");
+                var toAddress = new MailAddress(toEmail, "Electroworld");
 
                 var smtp = new SmtpClient
                 {

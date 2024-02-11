@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using System.Linq;
 using Pipelights.Database.Services;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
+using ElectroWorld.Website.Extensions;
 
 namespace Pipelights.Website.Controllers
 {
@@ -104,7 +106,7 @@ namespace Pipelights.Website.Controllers
             if (string.IsNullOrEmpty(model.Id))
             {
                 isNew = true;
-                model.Id = model.Name.Replace(" ", string.Empty);
+                model.Id = model.Name.GenerateId();
             }
 
 
@@ -170,6 +172,8 @@ namespace Pipelights.Website.Controllers
         [HttpPost]
         public IActionResult AddCategory(CategoryDetailsDto model)
         {
+            model.id = model.Name;
+
             var categoryEntity = new CategoryEntity
             {
                 id = model.id,
@@ -316,6 +320,8 @@ namespace Pipelights.Website.Controllers
 
             return RedirectToAction("TestimonialDashboard", "Admin");
         }
+
+
 
 
         public IActionResult VouchersDashboard()

@@ -192,7 +192,7 @@ namespace Pipelights.Website.Controllers
 
                     }).Result;
 
-                _emailService.SendEmail("serox.pipelights@gmail.com", $"A fost plasata o comanda! {orderNr}", body);
+                _emailService.SendEmail("proautomationgroup@gmail.com", $"A fost plasata o comanda! {orderNr}", body);
 
                 // send email to client 
                 string bodyForClient = _razorViewToStringRenderer.RenderViewToStringAsync("/Views/Shared/Emails/OrderConfirmationForClient.cshtml",
@@ -216,7 +216,7 @@ namespace Pipelights.Website.Controllers
             }
             else
             {
-                _emailService.SendEmail("serox.pipelights@gmail.com", $"Eroare la salvarea unei comenzi! {orderNr}",
+                _emailService.SendEmail("proautomationgroup@gmail.com", $"Eroare la salvarea unei comenzi! {orderNr}",
                     $"Comandat cu numarul {orderNr} a fost plasata de catre {model.name} {model.surname}.   <br><br>     Detalii: Nume: {model.name} {model.surname}, email {model.email}, telefon {model.telephone}." +
                     $"Adresa, Judet: {model.judete}, Localitate {model.localitate}. Plata aleasa: {model.payment}");
             }

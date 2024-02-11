@@ -43,17 +43,17 @@ namespace Pipelights.Website.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            string date = DateTime.Now.Hour.ToString();
+            string formattedDate = DateTime.Now.ToString("yyMMdd-HHmmss");
 
-            model.id = model.Name + date;
+            model.id = formattedDate;
 
             var testimonial = new TestimonialEntity()
             {
-                Description= model.Description,
-                Name= model.Name,
-                IsInactive= model.IsInactive,
+                Description = model.Description,
+                Name = model.Name,
+                IsInactive = model.IsInactive,
                 id = model.id,
-                Stars= model.Stars
+                Stars = model.Stars
             };
 
             _testimonialService.AddAsync(testimonial);

@@ -44,18 +44,17 @@
 </style>
 
 <div class="container-xxl"style="display: flex; justify-content: space-around; flex-wrap: wrap;">
-    @foreach (var lampEntity in Model)
+    @foreach (var service in Model)
     {
         <div class="product-item text-center border border-5 border-light">
             <div class="service-item service-item1">
                 <div class="overflow-hidden overflow-hidden1">
-                    <img src="@lampEntity.MainImage" alt="">
+                    <img src="@service.MainImage" alt="">
                 </div>
                 <div class="mt-2">
-                    <h4 class="mb-3">@lampEntity.Name</h4>
+                    <h4 class="mb-3">@service.Name</h4>
                    @* <p>@Html.Raw(lampEntity.Description.Length > 200 ? lampEntity.Description.Substring(0, 200) : lampEntity.Description)</p>*@
-                    <br>
-                    @*<a class="fw-medium m-3" style="cursor:pointer" href="~/Products/DetailsForService?Id =@lampEntity.Id">Vezi mai mult<i class="fa fa-arrow-right ms-2"></i></a>*@
+               @*     <a class="fw-medium m-3" style="cursor:pointer" href="~/Products/DetailsForService?Id =@service.Id">Vezi mai mult<i class="fa fa-arrow-right ms-2"></i></a>*@
                 </div>
             </div>
         </div>

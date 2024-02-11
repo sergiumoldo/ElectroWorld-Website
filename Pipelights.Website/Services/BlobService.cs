@@ -29,7 +29,26 @@ namespace Pipelights.Website.Services
                 //You do not need to create sub directory. Just create blob container and use file name like the variable filename
 
                 BlobClient blobClient = blobStorageClient.GetBlobClient(fileName);
-                var blob = await blobClient.UploadAsync(stream, true);
+
+                Azure.Response<BlobContentInfo> blob;
+
+                if (fileName.Contains(".pdf"))
+                {
+                    blob = await blobClient.UploadAsync(stream, new BlobUploadOptions
+                    {
+                        HttpHeaders = new BlobHttpHeaders
+                        {
+                            ContentType = "application/pdf",
+                        }
+                    });
+                }
+                else
+                {
+
+                    blobClient = blobStorageClient.GetBlobClient(fileName);
+                    blob = await blobClient.UploadAsync(stream, true);
+                }
+
                 if (blob != null)
                 {
                     logger.LogInformation($"Successfully saved file {fileName} to container {container}");

@@ -80,7 +80,7 @@ namespace Pipelights.Website.Controllers
             var emailSent = false;
             if (model != null && model.email != null && model.subject != null && model.message != null)
             {
-              emailSent = _emailService.SendEmail("serox.pipelights@gmail.com",
+              emailSent = _emailService.SendEmail("proautomationgroup@gmail.com",
                   model.subject  , $" Primit de la: {model.name}\n" +
                                    $" Email: {model.email}\n" +
                                    $" Mesaj: {model.message}");

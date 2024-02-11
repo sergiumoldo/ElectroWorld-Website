@@ -26,6 +26,26 @@
     </div>
 </div>
 
+<div class="container-fluid overflow-hidden px-lg-0 mx-auto" style="margin: 6rem 0;">
+    @if (Model.Resources != null && Model.Resources.Any())
+    {
+        @for (int i = 0; i < Model.Resources.Count; i += 3)
+        {
+            <div class="row">
+                @for (int j = 0; j < 3 && (i + j) < Model.Resources.Count; j++)
+                {
+                    <div class="col-md-4">
+                        <img src="@Model.Resources[i + j]" class="img-fluid my-3" alt="Image @(i + j + 1)" style="height: 300px;">
+                    </div>
+                }
+            </div>
+        }
+    }
+</div>
+
+
+
+
 <div class="section-title text-center">
     <a href="~/Home/Contact" class="btn btn-primary mx-3">Cere oferta</a>
     <a href="~/Home/Services" class="btn btn-secondary mx-3">Vezi toate serviciile</a>

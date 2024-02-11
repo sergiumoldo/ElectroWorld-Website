@@ -14,154 +14,163 @@
 
 <style>
     <link href="~/css/productDetails" rel="stylesheet" >
-     <link href="~/css/site" rel="stylesheet" >
+    <link href="~/css/site" rel="stylesheet" >
     .footermargin {
-         margin-top:500px;
+        margin-top: 500px;
     }
 
     .inStockButton {
         letter-spacing: 2px;
         border-radius: 7px !important;
-        color:black;background:#F0B250;
-        border:1px solid #F0B250; 
-        text-align:center; 
-        width:100px
+        color: black;
+        background: #F0B250;
+        border: 1px solid #F0B250;
+        text-align: center;
+        width: 100px
     }
 </style>
 
 @{
     ViewData["Title"] = @Model.Name + " - Corpuri de iluminat in stil industrial by Serox";
-    
+
 }
 
 <br />
 <br />
 <div style="display:flex; flex-direction:column">
-<div class="container">
-    <br />
-    <br />
-    <br />
+    <div class="container">
+        <br />
+        <br />
+        <br />
 
-    <div style="margin-bottom: 8px">
-        <a href="~/Products/Index" class="buy-return-link" onclick="window.history.go(-1);return false;">
-            <svg version="1.1" class="svg" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="15.862px" height="9.448px" viewBox="0 0 15.862 9.448" enable-background="new 0 0 15.862 9.448" xml:space="preserve"><path d="M15.865,4.782c0-0.234-0.19-0.423-0.423-0.423l-14.051,0l3.635-3.635C5.108,0.641,5.15,0.532,5.15,0.424S5.108,0.207,5.026,0.124c-0.165-0.165-0.433-0.165-0.599,0L0.126,4.425c-0.165,0.165-0.165,0.434,0,0.599l4.301,4.301c0.165,0.165,0.433,0.165,0.599,0c0.165-0.165,0.165-0.434,0-0.599L1.506,5.205l13.936,0C15.675,5.205,15.865,5.015,15.865,4.782z"></path></svg>
-            INAPOI LA PRODUSE
-        </a>
-        @*<span style="margin-left: 10px"><i class="bi bi-telephone-fill"></i> 0349832</span>*@
-    </div>
+        <div style="margin-bottom: 8px">
+            <a href="~/Products/Index" class="buy-return-link" onclick="window.history.go(-1);return false;">
+                <svg version="1.1" class="svg" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="15.862px" height="9.448px" viewBox="0 0 15.862 9.448" enable-background="new 0 0 15.862 9.448" xml:space="preserve"><path d="M15.865,4.782c0-0.234-0.19-0.423-0.423-0.423l-14.051,0l3.635-3.635C5.108,0.641,5.15,0.532,5.15,0.424S5.108,0.207,5.026,0.124c-0.165-0.165-0.433-0.165-0.599,0L0.126,4.425c-0.165,0.165-0.165,0.434,0,0.599l4.301,4.301c0.165,0.165,0.433,0.165,0.599,0c0.165-0.165,0.165-0.434,0-0.599L1.506,5.205l13.936,0C15.675,5.205,15.865,5.015,15.865,4.782z"></path></svg>
+                INAPOI LA PRODUSE
+            </a>
+            @*<span style="margin-left: 10px"><i class="bi bi-telephone-fill"></i> 0349832</span>*@
+        </div>
 
-    <br />
-   
+        <br />
 
-    <div>
-        @*images on the left*@
-        <div style="z-index:99" class="col-lg-6 col-md-12 col-sm-12 pdp pdp-left" >
-            @* PDP slideshow - start *@
-            @foreach (var image in Model.Resources)
-            {
-                @if (image.Contains(".mov") || image.Contains(".mp4"))
+
+        <div>
+            @*images on the left*@
+            <div style="z-index:99" class="col-lg-6 col-md-12 col-sm-12 pdp pdp-left">
+                @* PDP slideshow - start *@
+                @foreach (var image in Model.Resources)
                 {
-                    <div class="mySlides" style="text-align:center">
-                        <video width="600" controls muted style="max-height: 600px; min-height: 600px;">
-                            <source src="@image" type="video/mp4">
-                            Video-ul nu se  poate incarca.
-                        </video>
-                    </div>
+                    @if (image.Contains(".mov") || image.Contains(".mp4"))
+                    {
+                        <div class="mySlides" style="text-align:center">
+                            <video width="600" controls muted style="max-height: 600px; min-height: 600px;">
+                                <source src="@image" type="video/mp4">
+                                Video-ul nu se  poate incarca.
+                            </video>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="mySlides " style="text-align:center; max-height: 600px; min-height: 500px;">
+                            <img class="img-fluid" src="@image" style="max-height: 600px;" alt="image">
+                        </div>
+                    }
+                }
+                @* <a class="prev"   style="margin-left:-3px;" onclick="plusSlides(-1)">❮</a>
+                <a class="next"   style="margin-right:13px;" onclick="plusSlides(1)">❯</a>*@
+
+                <div class="row" style="margin-bottom:16px; margin-left:0px">
+
+                    @{
+
+                        var count = 1;
+
+                        @foreach (var image in Model.Resources)
+                        {
+                            <div class="column">
+                                @if (image.Contains(".mov") || image.Contains(".mp4"))
+                                {
+                                    <img class="demo cursor" src="@image" style="width: 100%" onclick="currentSlide(@count)" alt="Pipelight by Serox - ">
+                                }
+                                else
+                                {
+                                    <img class="demo cursor" src="@image" style="width: 100%" onclick="currentSlide(@count)" alt="Pipelight by Serox - ">
+                                }
+                            </div>
+
+                            count += 1;
+                        }
+
+                    }
+                </div>
+
+            </div>
+
+            @*technical on the right*@
+
+
+            <div style="height:600px!important;z-index:99" class="col-lg-5 col-md-12 col-sm-12 pdp pdp-right">
+                <h2 style="margin-bottom: 10px">@Model.Name</h2>
+                @if (Model.HasPricedReduced)
+                {
+                    <span style="text-decoration: line-through; color: #a0a1a3; margin-right: 15px">@Model.Price RON</span>
+                    <span style="color: #d2835e;">@Model.PriceReduced RON</span>
                 }
                 else
                 {
-                    <div class="mySlides " style="text-align:center; max-height: 600px; min-height: 500px;">
-                        <img class="img-fluid" src="@image" style="max-height: 600px;">
+                    <br />
+                    <h4>@Model.Price RON</h4>
+                }
+
+                <form method="post" action="~/Cart/AddProduct">
+
+                    <div style="margin-top: 10px;box-shadow: none!important">
+                        <span> CANTITATE </span>
+                        <span>
+                            <input type="number" name="quantity" min="1" max="100" data-min="1" data-max="100" value="1"
+                                   style="max-width: 15%; margin-left: 10px" />
+                        </span>
+
                     </div>
-                }
-            }
-               @* <a class="prev"   style="margin-left:-3px;" onclick="plusSlides(-1)">❮</a>
-                <a class="next"   style="margin-right:13px;" onclick="plusSlides(1)">❯</a>*@
-            
-                <div class="row" style="margin-bottom:16px; margin-left:0px">
-            
-                @{
 
-                    var count = 1;
+                    <div>
+                        <input type="hidden" name="id" value="@Model.Id" /> <br />
+                        <input type="submit" class="btn shadow-none btn-primary submit" value="Adauga in cos" />
+                    </div>
+                    <br />
+                    <br />
 
-                    @foreach (var image in Model.Resources)
-                    {
-                        <div class="column">
-                            @if (image.Contains(".mov") || image.Contains(".mp4"))
-                            {
-                                <img class="demo cursor" src="/lib/from-template/images/product_video.jpg" style="width: 100%" onclick="currentSlide(@count)" alt="Pipelight by Serox - ">
-                            }
-                            else
-                            {
-                                <img class="demo cursor" src="@image" style="width: 100%" onclick="currentSlide(@count)" alt="Pipelight by Serox - ">
-                            }
-                        </div>
-
-                        count += 1;
-                    }
-
-                }
-            </div>
-
-        </div>
-
-        @*technical on the right*@
-
-        
-        <div style="height:600px!important;z-index:99" class="col-lg-5 col-md-12 col-sm-12 pdp pdp-right">
-            <h2 style="margin-bottom: 10px">@Model.Name</h2>
-            @if (Model.HasPricedReduced)
-            {
-                <span style="text-decoration: line-through; color: #a0a1a3; margin-right: 15px">@Model.Price RON</span>
-                <span style="color: #d2835e;">@Model.PriceReduced RON</span>
-            }
-            else
-            {
-                <br />
-                <h4>@Model.Price RON</h4>  
-            }
-
-            <form method="post" action="~/Cart/AddProduct">
-
-                <div style="margin-top: 10px;box-shadow: none!important">
-                    <span> CANTITATE </span>
-                    <span>
-                        <input type="number" name="quantity" min="1" max="100" data-min="1" data-max="100" value="1"
-                               style="max-width: 15%; margin-left: 10px"/>
-                    </span>
-               
+                </form>
+                <div class="mb-2">
+                    <span > FISE TEHNICE </span>
                 </div>
-                 
-                <div>
-                    <input type="hidden" name="id" value="@Model.Id" /> <br />
-                    <input type="submit" class="btn shadow-none btn-primary submit" value="Adauga in cos" />
-                </div>
-            </form> 
                 @foreach (var file in Model.Resources)
                 {
                     @if (file.Contains(".pdf"))
                     {
-                        <div>
-                            <a class="btn btn-warning btn-sm" href="~/Products/OpenFile?url=@(System.Web.HttpUtility.UrlEncode(file))&id=@Model.Id">Fisa Tehnica</a>
-                        </div>
+                        <a target="_blank" class="" href="@file">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-filetype-pdf" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.6 11.85H0v3.999h.791v-1.342h.803q.43 0 .732-.173.305-.175.463-.474a1.4 1.4 0 0 0 .161-.677q0-.375-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179m.545 1.333a.8.8 0 0 1-.085.38.57.57 0 0 1-.238.241.8.8 0 0 1-.375.082H.788V12.48h.66q.327 0 .512.181.185.183.185.522m1.217-1.333v3.999h1.46q.602 0 .998-.237a1.45 1.45 0 0 0 .595-.689q.196-.45.196-1.084 0-.63-.196-1.075a1.43 1.43 0 0 0-.589-.68q-.396-.234-1.005-.234zm.791.645h.563q.371 0 .609.152a.9.9 0 0 1 .354.454q.118.302.118.753a2.3 2.3 0 0 1-.068.592 1.1 1.1 0 0 1-.196.422.8.8 0 0 1-.334.252 1.3 1.3 0 0 1-.483.082h-.563zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638z" />
+                                </svg>
+                            </span>
+                        </a>
                     }
                 }
 
-
-
             </div>
+        </div>
     </div>
-</div>
 
-<div style="margin-top:60px" class="container">
-    <div style="font-size:16px" class="title-primary">DESCRIERE:</div>
-    <br />
-    <br />
-    
-    <div style="color:#212529">@Html.Raw(Model.Description)</div>
+    <div style="margin-top:60px" class="container">
+        <div style="font-size:16px" class="title-primary">DESCRIERE:</div>
+        <br />
+        <br />
 
-    <br />
-    <br />
+        <div style="color:#212529">@Html.Raw(Model.Description)</div>
+
+        <br />
+        <br />
 
 
         <div id="technicalDataContainer">
@@ -177,33 +186,33 @@
             <br />
         </div>
 
-    
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-col-md-12 col-sm-12" id="partial">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-col-md-12 col-sm-12" id="partial">
+                </div>
             </div>
         </div>
     </div>
 </div>
-</div>
 
 
- 
+
 @section Scripts
-{
+    {
     <script src="~/js/lightslider.js"></script>
-   
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#toggleTechnicalData").click(function () {
-            $("#technicalDataContent").toggle();
+    <script>
+        $(document).ready(function () {
+            $("#toggleTechnicalData").click(function () {
+                $("#technicalDataContent").toggle();
+            });
         });
-    });
-</script>
+    </script>
 
     <script type="text/javascript">
         var slideIndex = 1;
@@ -234,11 +243,11 @@
         }
 
         const navItemsP = document.getElementsByClassName('nav-item');
-        
 
-        for(var i=0; i<navItemsP.length;i++){
+
+        for (var i = 0; i < navItemsP.length; i++) {
             navItemsP[i].classList.remove('active');
-            if (navItemsP[i].innerText == 'Produse'){
+            if (navItemsP[i].innerText == 'Produse') {
                 navItemsP[i].classList.add('active');
             }
         }
@@ -247,11 +256,11 @@
             url: '/Home/Suggestions',
             type: 'GET',
             success: function (result) {
-               $("#partial").html(result);
+                $("#partial").html(result);
             }
         });
-        
-      
+
+
 
         //add margin to cart on small screen
         $(document).ready(function () {
@@ -271,6 +280,6 @@
                 updateMarginTop();
             });
         });
-        </script>
+    </script>
 
 }
