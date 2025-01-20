@@ -43,9 +43,10 @@
 
 @{
     ViewData["Title"] = "Checkout";
-    var subtotal = 0;
+    decimal subtotal = 0;
 
 }
+
 <br />
 <br />
 <br />
@@ -59,6 +60,29 @@
             <h4 style="color:#212529">Detalii facturare</h4>
             <br />
             <form method="post" action="~/Cart/PlaceOrder" id="form">
+                <div class="form-group">
+                    <input type="checkbox" id="showCompanyFields">
+                    <label for="showCompanyFields">Persoana juridica</label>
+                </div>
+                <br />
+                <div class="form-group company-fields" style="display:none;">
+                    <label for="companyName">Nume Companie</label>
+                    <input type="text" style="border:1px solid #d6d6d6; background-color:white" class="formfocus form-control shadow-none " id="companyName" name="companyName" placeholder="">
+                    <label id="labelnume" class="redlabel">Acest camp este obligatoriu</label>
+                </div>
+
+                <div class="form-group company-fields" style="display:none;">
+                    <label for="CUI">CUI</label>
+                    <input type="text" style="border:1px solid #d6d6d6; background-color:white" class="formfocus form-control shadow-none " id="CUI" name="CUI" placeholder="">
+                    <label id="labelnume" class="redlabel">Acest camp este obligatoriu</label>
+                </div>
+
+                <div class="form-group company-fields" style="display:none;">
+                    <label for="numarRegistruComertului">Nr. Registrul Comertului</label>
+                    <input type="text" style="border:1px solid #d6d6d6; background-color:white" class="formfocus form-control shadow-none " id="numarRegistruComertului" name="numarRegistruComertului" placeholder="">
+                    <label id="labelnume" class="redlabel">Acest camp este obligatoriu</label>
+                </div>
+
                 <div class="form-group">
                     <label for="name">Nume</label>
                     <input type="text" style="border:1px solid #d6d6d6; background-color:white" class="formfocus form-control shadow-none " id="name" name="name" placeholder="">
@@ -161,21 +185,21 @@
                         </div>
 
                         <div>
-                            <p style="color:#212529">Lampa @product.ProductDetails.Name</p>
+                            <p style="color:#212529"> @product.ProductDetails.Name</p>
                             <p style="color:#212529">@product.Quantity BUC</p>
                             @{
-                                var price = 0;
+                                decimal price = 0;
                             }
 
                             @if (!string.IsNullOrEmpty(product.ProductDetails.PriceReduced))
                             {
                                 <p>@product.ProductDetails.PriceReduced</p>
-                                int.TryParse(product.ProductDetails.PriceReduced, out price);
+                                decimal.TryParse(product.ProductDetails.PriceReduced, out price);
                             }
                             else
                             {
                                 <p>@product.ProductDetails.Price RON BUC</p>
-                                int.TryParse(product.ProductDetails.Price, out price);
+                                decimal.TryParse(product.ProductDetails.Price, out price);
                             }
 
                             @{
@@ -261,6 +285,15 @@
 
 
 <script>
+    document.getElementById("showCompanyFields").addEventListener("change", function() {
+    const companyFields = document.querySelectorAll(".company-fields");
+    
+    if (this.checked) {
+        companyFields.forEach(field => field.style.display = "block");
+    } else {
+        companyFields.forEach(field => field.style.display = "none");
+    }
+});
 
     $("#aplyVoucherBtn").click(function (event) {
         //event.preventDefault(); // Prevent the default form submission

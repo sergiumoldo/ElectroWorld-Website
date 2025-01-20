@@ -46,6 +46,9 @@ namespace Pipelights.Website.BusinessService
                 {
 
                     Name = order.name,
+                    CompanyName = order.companyName,
+                    CUI = order.CUI,
+                    NumarRegistruComertului= order.numarRegistruComertului,
                     Surname = order.surname,
                     Address = order.address,
                     Email = order.email,

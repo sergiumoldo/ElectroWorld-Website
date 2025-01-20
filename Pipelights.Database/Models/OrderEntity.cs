@@ -7,7 +7,7 @@ namespace Pipelights.Database.Models
     public class OrderEntity
     {
         public string id { get; set; }
-        
+
         [JsonPropertyName("telephone")]
         public string Telephone { get; set; }
 
@@ -16,6 +16,12 @@ namespace Pipelights.Database.Models
 
         [JsonPropertyName("name")]
         public string Name { get; set; }
+        [JsonPropertyName("companyname")]
+        public string CompanyName { get; set; }
+        [JsonPropertyName("CUI")]
+        public string CUI { get; set; }
+        [JsonPropertyName("numarregistrulcomertului")]
+        public string NumarRegistruComertului { get; set; }
 
         [JsonPropertyName("surname")]
         public string Surname { get; set; }
@@ -60,7 +66,7 @@ namespace Pipelights.Database.Models
 
         [JsonPropertyName("quantity")]
         public int Quantity { get; set; }
-        
+
         [JsonPropertyName("price")]
         public string Price { get; set; }
     }

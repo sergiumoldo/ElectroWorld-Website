@@ -2,17 +2,40 @@
 
 @{
     Layout = null;
-    var productsPrice = 0;
+    decimal productsPrice = 0;
     var costLivrare = Model.Order.judete.Equals("Cluj") ? 0 : 30;
     decimal voucherPrice = 0;
 }
 
-<h2>Buna @Model.Order.surname,</h2>
+@*<h2>Buna @Model.Order.surname,</h2>*@
 <br />
-<h2>Ai plasat comanda cu numarul: @Model.OrderNumber</h2>
+@*<h2>Ai plasat comanda cu numarul: @Model.OrderNumber</h2>*@
 <br>
 <h4>Detalii comanda:</h4>
 <table style="width: 400px">
+    @if (!string.IsNullOrEmpty(Model.Order.companyName))
+    {
+        <tr>
+            <td style="border: 1px solid grey; background-color:#92EFE4">Nume Companie</td>
+            <td style="border:1px solid grey;background-color:#92EFE4">@Model.Order.companyName</td>
+        </tr>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.Order.CUI))
+    {
+        <tr>
+            <td style="border: 1px solid grey; background-color:#92EFE4">CUI</td>
+            <td style="border:1px solid grey;background-color:#92EFE4">@Model.Order.CUI</td>
+        </tr>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.Order.numarRegistruComertului))
+    {
+        <tr>
+            <td style="border: 1px solid grey; background-color:#92EFE4">Nr. Registru Comertului</td>
+            <td style="border:1px solid grey;background-color:#92EFE4">@Model.Order.numarRegistruComertului</td>
+        </tr>
+    }
     <tr>
         <td style="border: 1px solid grey; background-color:#d5f4e6">Nume</td>
         <td style="border:1px solid grey;background-color:#d5f4e6">@Model.Order.surname</td>
@@ -58,14 +81,14 @@
     @if (Model.Cart.ProductsForCart != null)
         foreach (var item in Model.Cart.ProductsForCart)
         {
-            var price = 0;
+            decimal price = 0;
             if (item.ProductDetails.HasPricedReduced)
             {
-                int.TryParse(item.ProductDetails.PriceReduced, out price);
+                decimal.TryParse(item.ProductDetails.PriceReduced, out price);
             }
             else
             {
-                int.TryParse(item.ProductDetails.Price, out price);
+                decimal.TryParse(item.ProductDetails.Price, out price);
             }
 
             productsPrice = productsPrice + (item.Quantity * price);
@@ -110,4 +133,7 @@
 
 <br />
 <h4>Multumim pentru comanda!</h4>
-<h4>Daca vrei sa afli in ce stadiu este comanda ta, nu ezita sa ne contactezi la numarul 0746272923 sau prin email: serox.pipelights@gmail.com</h4>
+<h4>
+    Daca vrei sa afli in ce stadiu este comanda ta, nu ezita sa ne contactezi la numarul +40 741 428 802
+    sau prin email: proautomationgroup@gmail.com
+</h4>
