@@ -218,6 +218,14 @@
         var slideIndex = 1;
         showSlides(slideIndex);
 
+        document.addEventListener("DOMContentLoaded", function () {
+            // Găsește prima imagine din galeria de tip "demo"
+            var firstImage = document.querySelector(".demo");
+            if (firstImage) {
+                // Simulează un click pe prima imagine
+                firstImage.click();
+            }
+        });
         function plusSlides(n) {
             showSlides(slideIndex += n);
         }
